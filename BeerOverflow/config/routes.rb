@@ -8,7 +8,16 @@ Rails.application.routes.draw do
   resources :users
   
   resources :questions do
-    resources :answers
+    resources :votes
+    resources :comments do
+      resources :votes
+    end
+    resources :answers do
+      resources :votes
+      resources :comments do
+        resources :votes
+      end
+    end
   end
 
   # Example of regular route:
