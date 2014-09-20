@@ -2,3 +2,5 @@
 
 <%= link_to 'edit question', edit_question_path(@question) %>
 <%= link_to 'delete question', @question, method: :delete %>
+<%= render partial: 'answers/displayanswers' %>
+<%= render partial: 'answers/answerform', question: @question, answer: @answer %>
