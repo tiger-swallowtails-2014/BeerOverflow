@@ -1,7 +1,22 @@
 <h1> Beer Overflow Homepage </h1>
 
-<%= link_to 'Ask Question', new_question_path %>
+<p>  <%= link_to 'Ask Question', new_question_path %> </p>
 
-<% @questions.each do |question| %>
-  <p> <%= link_to question.question, question %> </p>
-<% end %> 
+<table>
+  
+  <% @questions.each do |question| %>
+    <tr>
+      <td> 
+        <span>upvote</span><br>
+        <span>downvote </span>
+      </td>
+      <td> 
+        <span><%= question.votes.sum(:value) %></span><br>
+        <span> votes </span>
+      </td>
+      <td> <%= link_to question.question, question %> </td>
+    </tr>
+      
+  <% end %> 
+
+</table>

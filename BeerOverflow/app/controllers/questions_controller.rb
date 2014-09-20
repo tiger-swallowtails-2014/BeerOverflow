@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
   def index
-    @questions = Question.all
+    @questions = Question.order(created_at: :desc)
   end
 
   def show
@@ -39,5 +39,4 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:question)
   end
-
 end
