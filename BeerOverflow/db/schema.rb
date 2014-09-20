@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140920212512) do
   create_table "votes", force: true do |t|
     t.integer "voteable_id"
     t.string  "voteable_type"
+    t.integer "value"
     t.integer "user_id"
   end
 
