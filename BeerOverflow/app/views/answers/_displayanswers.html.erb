@@ -1,5 +1,8 @@
 <ul>
-<% @question.answers.each do |ans| %>
-<li> <%= ans.answer %> </li>
-<% end %>
+  <% @question.answers.each do |ans| %>
+    <li> <%= ans.answer %>
+      <%= link_to "Edit", edit_question_answer_path(@question, ans) %>
+      <%= link_to 'Delete', question_answer_path(@question, ans), method: :delete %>
+    </li>
+  <% end %>
 </ul>
