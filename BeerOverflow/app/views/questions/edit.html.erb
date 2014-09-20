@@ -1,0 +1,4 @@
+<%= form_for @question do |f| %>
+  <%= f.text_field :question, placeholder: @question.question %>
+  <%= f.submit "update question" %>
+<% end %>

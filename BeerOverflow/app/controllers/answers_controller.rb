@@ -2,7 +2,6 @@ class AnswersController < ActionController::Base
 
   def index
     @question = Question.find(params[:question_id])
-    @answer = Answer.new
   end
 
   def create
@@ -13,6 +12,8 @@ class AnswersController < ActionController::Base
   end
 
   def new
+    @question = Question.find(params[:question_id])
+    @answer = Answer.new
   end
 
   private

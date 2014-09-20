@@ -1,0 +1,4 @@
+<h1> <%= @question.question %> </h1>
+
+<%= link_to 'edit question', edit_question_path(@question) %>
+<%= link_to 'delete question', @question, method: :delete %>
