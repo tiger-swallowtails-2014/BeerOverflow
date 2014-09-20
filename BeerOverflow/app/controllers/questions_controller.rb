@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answers = @question.answers
     @answer = Answer.new
+    @vote = Vote.new
   end
 
   def new
@@ -32,6 +33,18 @@ class QuestionsController < ApplicationController
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
+    redirect_to '/'
+  end
+  
+  def upvote
+    @question = Question.find(params[:id])
+    @question.votes.create(value: 1)
+    redirect_to '/'    
+  end
+  
+  def downvote
+    @question = Question.find(params[:id])
+    @question.votes.create(value: -1)
     redirect_to '/'
   end
   

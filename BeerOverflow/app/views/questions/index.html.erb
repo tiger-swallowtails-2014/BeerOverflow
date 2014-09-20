@@ -3,20 +3,17 @@
 <p>  <%= link_to 'Ask Question', new_question_path %> </p>
 
 <table>
-  
   <% @questions.each do |question| %>
+  <% @vote = Vote.new %>
     <tr>
       <td> 
-        <span>upvote</span><br>
-        <span>downvote </span>
+        <%= button_to '+1', upvote_question_path(question), method: :post %>
+        <%= button_to '-1', downvote_question_path(question), method: :post %>
       </td>
       <td> 
-        <span><%= question.votes.sum(:value) %></span><br>
-        <span> votes </span>
+        <span><%= pluralize(question.votes.sum(:value), "vote") %></span>
       </td>
       <td> <%= link_to question.question, question %> </td>
     </tr>
-      
   <% end %> 
-
 </table>

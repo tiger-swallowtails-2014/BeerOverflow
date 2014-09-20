@@ -8,15 +8,14 @@ Rails.application.routes.draw do
   resources :users
   
   resources :questions do
-    resources :votes
-    resources :comments do
-      resources :votes
+    member do
+      post 'upvote'
+      post 'downvote'
     end
+    
+    resources :comments 
     resources :answers do
-      resources :votes
-      resources :comments do
-        resources :votes
-      end
+      resources :comments 
     end
   end
 
