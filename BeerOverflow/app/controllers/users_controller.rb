@@ -2,10 +2,11 @@ class UsersController < ApplicationController
 
 
   def index
+    @user = User.find(session[:user_id])
+    p @user.questions
   end
 
   def show
-    @user = User.find(session[:user_id])
   end
 
   def new
@@ -24,19 +25,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @question = Question.find(params[:id])
-  end
-
-  def update
-    @question = Question.find(params[:id])
-    @question.update_attributes(question_params)
-    redirect_to '/'
-  end
-
   def destroy
-    @question = Question.find(params[:id])
-    @question.destroy
+    @user = User.find(session[:user_id])
+    @user.destroy
+    session[:user_id] = nil
     redirect_to '/'
   end
 
