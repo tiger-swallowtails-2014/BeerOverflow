@@ -15,6 +15,18 @@ class AnswersController < ActionController::Base
     @question = Question.find(params[:id])
     @answer = Answer.new
   end
+  
+  def upvote
+    @answer = Answer.find(params[:id])
+    @answer.votes.create(value: 1)
+    redirect_to @answer.question    
+  end
+  
+  def downvote
+    @answer = Answer.find(params[:id])
+    @answer.votes.create(value: -1)
+    redirect_to @answer.question
+  end
 
   def edit
     @question = Question.find(params[:question_id])
