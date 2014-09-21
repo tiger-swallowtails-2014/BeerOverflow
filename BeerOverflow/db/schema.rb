@@ -38,7 +38,8 @@ ActiveRecord::Schema.define(version: 20140920212512) do
 
   create_table "users", force: true do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_hash"
+    t.string "password_salt"
   end
 
   create_table "votes", force: true do |t|

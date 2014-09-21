@@ -29,27 +29,28 @@ class QuestionsController < ApplicationController
     @question.update_attributes(question_params)
     redirect_to '/'
   end
-  
+
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
     redirect_to '/'
   end
-  
+
+
   def upvote
     @question = Question.find(params[:id])
     @question.votes.create(value: 1)
-    redirect_to '/'    
+    redirect_to '/'
   end
-  
+
   def downvote
     @question = Question.find(params[:id])
     @question.votes.create(value: -1)
     redirect_to '/'
   end
-  
+
   private
   def question_params
-    params.require(:question).permit(:question)
+    params.require(:question).permit(:question, :user_id)
   end
 end
