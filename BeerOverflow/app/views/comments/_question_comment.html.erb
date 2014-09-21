@@ -1,0 +1,7 @@
+<li> 
+  <%= button_to '+1', upvote_question_comment_path(question, comment), method: :post %>
+  <%= button_to '-1', downvote_question_comment_path(question, comment), method: :post %>
+  <span> <%= pluralize(comment.votes.sum(:value), "vote") %> </span>
+  <span> <%= comment.comment %> </span>
+</li>
+  

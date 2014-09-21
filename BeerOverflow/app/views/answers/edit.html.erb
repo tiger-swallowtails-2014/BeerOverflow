@@ -1,0 +1,4 @@
+<%= form_for([@question, @answer]) do |f| %>
+  <%= f.text_area :answer, rows: "20", cols: "120", :placeholder => @answer.answer %>
+  <%= f.submit "Update Answer" %>
+<% end %>

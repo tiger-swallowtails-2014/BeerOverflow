@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   has_many :questions
   has_many :answers
+  has_many :votes
+  has_many :comments
 
 def encrypt_password
   self.password_salt = BCrypt::Engine.generate_salt

@@ -40,3 +40,15 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'faker'
+
+group :development, :test do
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+end
+
+group :test do
+  gem "capybara"
+  gem "database_cleaner"
+  gem "launchy"
+  gem "selenium-webdriver"
+end

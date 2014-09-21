@@ -12,7 +12,31 @@ Rails.application.routes.draw do
   get "/log-out" => "sessions#destroy"
 
   resources :questions do
-    resources :answers
+      member do
+        post 'upvote'
+        post 'downvote'
+      end
+      
+      resources :comments do
+        member do
+          post 'upvote'
+          post 'downvote'
+        end
+      end
+      
+      resources :answers do
+        member do
+          post 'upvote'
+          post 'downvote'
+        end
+      
+          resources :comments do
+            member do
+              post 'upvote'
+              post 'downvote'
+            end
+          end
+      end
   end
 
   # Example of regular route:
