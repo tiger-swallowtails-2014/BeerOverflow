@@ -1,0 +1,4 @@
+<h1> HERE ARE YOUR QUESTIONS </h1>
+<% @user.questions do |question| %>
+  <p> <%= link_to question.question, question %> </p>
+<% end %>
