@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  
   <title>BeerOverflow</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    </h1><%= link_to 'BeerOverflow', root_path %></h1>
+    
+      <% if session[:user_id] == nil %>
+        <form name="input" action="/users/new" method="get">
+          <input type="submit" value="Sign Up">
+        </form>
+        <form name="input" action="/log-in" method="get">
+          <input type="submit" value="Login">
+        </form>
+      <% else %>
+        <form name="input" action="/log-out" method="get">
+          <input type="submit" value="Log Out">
+        </form>
+        <form name="input" action="/users" method="get">
+          <input type="submit" value="Homepage">
+        </form>
+      <% end %>
+  </header>
+  
+  
+  
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "alert alert-info" %>
   <% end %>

@@ -21,4 +21,71 @@ background: url(http://blog.trendincite.com/wp-content/uploads/2014/02/beer-foam
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;
+
+margin: 0;
+font-family: 'Roboto', sans-serif;
+
 }
+
+header {
+  color: white;
+  padding: 0.5%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid black;
+  font-family: 'Lobster', cursive;
+}
+
+header form {
+  float: right;  
+}
+
+header a {
+  text-decoration: none;
+  font-size: 3em;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+.question_container {
+  margin: 0 auto;
+}
+
+.spacer {
+  height: 10px;
+}
+
+.question {
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all .2s;
+  color: black;
+}
+
+.question a {
+  text-decoration: none;
+  color:black;
+  transition: all .2s;
+}
+
+.question a:hover {
+  color:white;
+}
+
+.question:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color:white;
+}
+
+.ask_question {
+  margin: 1%;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1%;
+  width: 10%;
+  text-align: center;
+}
+
+.ask_question a {
+  text-decoration: none;
+  color: white;
+}
+
+
+
