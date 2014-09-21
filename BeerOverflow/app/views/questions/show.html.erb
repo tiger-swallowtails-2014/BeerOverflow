@@ -1,3 +1,4 @@
+<span> <%= @question.votes.sum(:value) %> </span>
 <h1> <%= @question.question %> </h1>
 
 <%= link_to 'edit question', edit_question_path(@question) %>
