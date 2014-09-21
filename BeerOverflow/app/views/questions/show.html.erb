@@ -1,7 +1,21 @@
-<span> <%= @question.votes.sum(:value) %> </span>
+<span> <%= pluralize(@question.votes.sum(:value), "vote") %> </span>
 <h1> <%= @question.question %> </h1>
+
+<h3> Comments: </h3>
+<ul>
+  <% @question.comments.each do |comment| %>
+    <%= render partial: 'comments/question_comment', locals: {question: @question, comment: comment} %>
+  <% end %>
+</ul>
 
 <%= link_to 'edit question', edit_question_path(@question) %>
 <%= link_to 'delete question', @question, method: :delete %>
-<%= render partial: 'answers/displayanswers' %>
+
+<h3> Answers </h3>
+<ul>
+  <% @question.answers.each do |answer| %>
+    <%= render partial: 'answers/displayanswers', locals: {question: @question, answer: answer} %>
+  <% end %>
+</ul>
+  
 <%= render partial: 'answers/answerform', question: @question, answer: @answer %>

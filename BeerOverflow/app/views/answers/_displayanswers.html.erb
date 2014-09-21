@@ -1,11 +1,14 @@
-<ul>
-  <% @question.answers.each do |ans| %>
-    <li> <%= ans.answer %> 
-      <%= button_to '+1', upvote_question_answer_path(@question, ans), method: :post %>
-      <%= button_to '-1', downvote_question_answer_path(@question, ans), method: :post %>
-      <span><%= pluralize(ans.votes.sum(:value), "vote") %></span>
-      <%= link_to "Edit", edit_question_answer_path(@question, ans) %>
-      <%= link_to 'Delete', question_answer_path(@question, ans), method: :delete %>
-    </li>
-  <% end %>
-</ul>
+<li> <%= answer.answer %> 
+  <%= button_to '+1', upvote_question_answer_path(question, answer), method: :post %>
+  <%= button_to '-1', downvote_question_answer_path(question, answer), method: :post %>
+  <span><%= pluralize(answer.votes.sum(:value), "vote") %></span>
+  <%= link_to "Edit", edit_question_answer_path(question, answer) %>
+  <%= link_to 'Delete', question_answer_path(question, answer), method: :delete %>
+  
+  <h5> Answer Comments: </h5>
+    <ul>
+      <% answer.comments.each do |comment| %>
+        <%= render partial: 'comments/answer_comment', locals: {question: answer.question, answer: answer, comment: comment} %>
+      <% end %>
+    </ul>
+</li>
