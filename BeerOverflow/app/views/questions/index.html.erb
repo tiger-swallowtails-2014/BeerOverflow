@@ -13,7 +13,8 @@
       <td>
         <span><%= pluralize(question.votes.sum(:value), "vote") %></span>
       </td>
-      <td> <%= link_to question.question, question %> </td>
+      <td> <%= link_to question.question, question %>
+      </td>
     </tr>
     <tr class="spacer">
     </tr>

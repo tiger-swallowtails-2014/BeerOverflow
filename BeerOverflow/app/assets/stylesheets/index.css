@@ -1,0 +1,47 @@
+.question_container {
+  margin: 0 auto;
+}
+
+.spacer {
+  height: 10px;
+}
+
+.question {
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all .2s;
+  color: black;
+}
+
+.question td{
+  box-shadow: 2px 2px 10px black;
+  padding: 5px;
+}
+
+.question a {
+  text-decoration: none;
+  color:black;
+  transition: all .2s;
+}
+
+.question a:hover {
+  color:white;
+}
+
+.question:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color:white;
+}
+
+.ask_question {
+  margin: 1%;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1%;
+  width: 10%;
+  text-align: center;
+}
+
+.ask_question a {
+  text-decoration: none;
+  color: white;
+}
+

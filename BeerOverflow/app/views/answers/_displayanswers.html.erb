@@ -1,14 +1,24 @@
-<li> <%= answer.answer %> 
-  <%= button_to '+1', upvote_question_answer_path(question, answer), method: :post %>
-  <%= button_to '-1', downvote_question_answer_path(question, answer), method: :post %>
-  <span><%= pluralize(answer.votes.sum(:value), "vote") %></span>
-  <%= link_to "Edit", edit_question_answer_path(question, answer) %>
-  <%= link_to 'Delete', question_answer_path(question, answer), method: :delete %>
-  
-  <h5> Answer Comments: </h5>
-    <ul>
-      <% answer.comments.each do |comment| %>
-        <%= render partial: 'comments/answer_comment', locals: {question: answer.question, answer: answer, comment: comment} %>
-      <% end %>
-    </ul>
-</li>
+<tr class="answer"> 
+  <td>
+    <%= button_to '+1', upvote_question_answer_path(question, answer), method: :post %>
+    <%= button_to '-1', downvote_question_answer_path(question, answer), method: :post %>
+  </td>
+  <td>
+    <span><%= pluralize(answer.votes.sum(:value), "vote") %></span>
+  </td>
+  <td>
+    <%= answer.answer %> 
+  </td>
+  <td>
+    <%= link_to "Edit", edit_question_answer_path(question, answer) %>
+    <%= link_to 'Delete', question_answer_path(question, answer), method: :delete %>
+  </td>
+</tr>
+
+
+<h5> Answer Comments: </h5>
+<table>
+  <% answer.comments.each do |comment| %>
+    <%= render partial: 'comments/answer_comment', locals: {question: answer.question, answer: answer, comment: comment} %>
+  <% end %>
+</table>
