@@ -13,11 +13,12 @@ Rails.application.routes.draw do
         post 'downvote'
       end
       
-      resources :comments 
+      resources :comments do
         member do
           post 'upvote'
           post 'downvote'
         end
+      end
       
       resources :answers do
         member do
@@ -25,7 +26,12 @@ Rails.application.routes.draw do
           post 'downvote'
         end
       
-          resources :comments 
+          resources :comments do
+            member do
+              post 'upvote'
+              post 'downvote'
+            end
+          end
       end
   end
 
