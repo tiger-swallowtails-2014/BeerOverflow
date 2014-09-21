@@ -1,34 +1,22 @@
-<h1> Beer Overflow Homepage </h1>
+<div class="ask_question">
+  <%= link_to 'Ask Question', new_question_path %>
+</div>
 
-<%= link_to 'Ask Question', new_question_path %>
-<% if session[:user_id] == nil %>
-  <form name="input" action="/users/new" method="get">
-    <input type="submit" value="Sign Up">
-  </form>
-  <form name="input" action="/log-in" method="get">
-    <input type="submit" value="Login">
-  </form>
-<% else %>
-  <form name="input" action="/log-out" method="get">
-    <input type="submit" value="Log Out">
-  </form>
-  <form name="input" action="/users" method="get">
-    <input type="submit" value="Homepage">
-  </form>
-<% end %>
-
-<table>
+<table class="question_container">
   <% @questions.each do |question| %>
   <% @vote = Vote.new %>
-    <tr>
-      <td>
+    <tr class="question">
+      <td class="vote_buttons">
         <%= button_to '+1', upvote_question_path(question), method: :post %>
         <%= button_to '-1', downvote_question_path(question), method: :post %>
       </td>
       <td>
         <span><%= pluralize(question.votes.sum(:value), "vote") %></span>
       </td>
-      <td> <%= link_to question.question, question %> </td>
+      <td> <%= link_to question.question, question %>
+      </td>
+    </tr>
+    <tr class="spacer">
     </tr>
   <% end %>
 </table>
