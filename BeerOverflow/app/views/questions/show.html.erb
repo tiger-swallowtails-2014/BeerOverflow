@@ -12,14 +12,16 @@
     <td>
       <h1> <%= @question.question %> </h1>
     </td>
-    <td class="update">
-      <%= link_to 'edit', edit_question_path(@question) %>
-      <%= link_to 'delete', @question, method: :delete %>
-    </td>
+    <% if session[:user_id] == @question.user_id %>
+      <td class="update">
+        <%= link_to 'edit', edit_question_path(@question) %>
+        <%= link_to 'delete', @question, method: :delete %>
+      </td>
+    <% end %>
   </tr>
 </table>
 
-  
+
 
   <table class="table">
     <% @question.comments.each do |comment| %>
@@ -27,7 +29,7 @@
     <% end %>
   </table>
 
-  
+
 
   <h3> Answers </h3>
   <table>
@@ -35,6 +37,6 @@
       <%= render partial: 'answers/displayanswers', locals: {question: @question, answer: answer} %>
     <% end %>
   </table>
-    
+
   <%= render partial: 'answers/answerform', question: @question, answer: @answer %>
 </div>

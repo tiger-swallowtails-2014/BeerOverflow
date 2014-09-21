@@ -17,9 +17,11 @@ ActiveRecord::Schema.define(version: 20140920212512) do
   enable_extension "plpgsql"
 
   create_table "answers", force: true do |t|
-    t.string  "answer"
-    t.integer "question_id"
-    t.integer "user_id"
+    t.string   "answer"
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", force: true do |t|
@@ -32,14 +34,18 @@ ActiveRecord::Schema.define(version: 20140920212512) do
   end
 
   create_table "questions", force: true do |t|
-    t.string  "question"
-    t.integer "user_id"
+    t.string   "question"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string "username"
-    t.string "password_hash"
-    t.string "password_salt"
+    t.string   "username"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "votes", force: true do |t|
