@@ -1,5 +1,9 @@
 <ul>
 <% @question.answers.each do |ans| %>
-<li> <%= ans.answer %> </li>
+<li> <%= ans.answer %> 
+  <%= button_to '+1', upvote_question_answer_path(@question, ans), method: :post %>
+  <%= button_to '-1', downvote_question_answer_path(@question, ans), method: :post %>
+  <span><%= pluralize(ans.votes.sum(:value), "vote") %></span>
+</li>
 <% end %>
 </ul>
