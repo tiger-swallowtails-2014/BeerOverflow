@@ -27,6 +27,15 @@ describe QuestionsController do
 	end
 
 	context "#show" do
+		it "loads page succesfully" do
+			get :show, :id => question.id
+			expect(response).to be_success
+		end
+
+		it "renders the show template" do
+			get :show, :id => question.id
+			expect(response).to render_template("show")
+		end
 	end
 
 	context "#new" do
