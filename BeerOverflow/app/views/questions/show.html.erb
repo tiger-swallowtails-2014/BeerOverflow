@@ -7,7 +7,7 @@
         <%= button_to '-1', downvote_question_path(@question), method: :post %>
     </td>
     <td>
-      <span><%= pluralize(@question.votes.sum(:value), "vote") %></span>
+      <span><%= pluralize(@question.votes.sum(:value), "sud") %></span>
     </td>
     <td>
       <h1> <%= @question.question %> </h1>
@@ -30,11 +30,11 @@
   
 
   <h3> Answers </h3>
-  <table>
+  <div class="display_answers">
     <% @question.answers.each do |answer| %>
-      <%= render partial: 'answers/displayanswers', locals: {question: @question, answer: answer} %>
+      <%= render partial: 'answers/displayanswers', locals: {question: @question, answer: answer, comment: @comment} %>
     <% end %>
-  </table>
+  </div>
     
   <%= render partial: 'answers/answerform', question: @question, answer: @answer %>
 </div>
