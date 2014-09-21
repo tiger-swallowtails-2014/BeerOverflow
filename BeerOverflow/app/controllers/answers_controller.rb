@@ -5,10 +5,8 @@ class AnswersController < ActionController::Base
   end
 
   def create
-    p "GO HERE"
-    p params
-    Question.find(params[:question_id]).answers.create(answer_params)
-    redirect_to '/'
+    @answer = Question.find(params[:question_id]).answers.create(answer_params)
+    redirect_to @answer.question
   end
 
   def new
@@ -42,7 +40,7 @@ class AnswersController < ActionController::Base
   def destroy
     @answer = Answer.find(params[:id])
     @answer.destroy
-    redirect_to '/'
+    redirect_to @answer.question
   end
 
   private
