@@ -16,7 +16,4 @@ describe Answer do
     Answer.create(answer: "test answer", question_id: question.id)
     expect(Answer.all.count).not_to eq(count)
   end
-
-  it "is changed in the database when updated"
-  it "is removed from the databse when deleted"
 end
