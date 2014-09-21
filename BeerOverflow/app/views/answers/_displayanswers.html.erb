@@ -9,7 +9,7 @@
   <td>
     <%= answer.answer %> 
   </td>
-  <td>
+  <td class="update">
     <%= link_to "Edit", edit_question_answer_path(question, answer) %>
     <%= link_to 'Delete', question_answer_path(question, answer), method: :delete %>
   </td>
@@ -17,7 +17,7 @@
 
 
 <h5> Answer Comments: </h5>
-<table>
+<table class='table'>
   <% answer.comments.each do |comment| %>
     <%= render partial: 'comments/answer_comment', locals: {question: answer.question, answer: answer, comment: comment} %>
   <% end %>

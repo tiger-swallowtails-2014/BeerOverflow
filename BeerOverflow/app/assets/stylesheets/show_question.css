@@ -42,3 +42,7 @@ input[type="submit"] {
   font-size: 12px;
   text-decoration: none;
 }
+
+.question_title td {
+  border-bottom: 1px solid black;
+}

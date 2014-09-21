@@ -1,7 +1,7 @@
 <div class="show_container">
 
 <table>
-  <tr>
+  <tr class="question_title">
     <td class="vote_buttons">
         <%= button_to '+1', upvote_question_path(@question), method: :post %>
         <%= button_to '-1', downvote_question_path(@question), method: :post %>
@@ -10,7 +10,7 @@
       <span><%= pluralize(@question.votes.sum(:value), "vote") %></span>
     </td>
     <td>
-      <h1 class="question_title"> <%= @question.question %> </h1>
+      <h1> <%= @question.question %> </h1>
     </td>
     <td class="update">
       <%= link_to 'edit', edit_question_path(@question) %>
