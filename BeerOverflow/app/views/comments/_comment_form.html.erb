@@ -1,0 +1,4 @@
+<%= form_for([question, answer, comment]) do |f| %>
+  <%= f.text_area :comment, placeholder: "Got a comment?  Submit it or chug a beer!" %>
+  <%= f.submit "Submit" %>
+<% end %>
