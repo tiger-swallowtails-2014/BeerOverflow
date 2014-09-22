@@ -5,26 +5,38 @@ class AnswersController < ActionController::Base
   end
 
   def create
-    p "GO HERE"
-    p params
-    Question.find(params[:question_id]).answers.create(answer_params)
-    redirect_to '/'
+    session[:return_to] ||= request.referer
+    @answer = Question.find(params[:question_id]).answers.new(answer_params)
+    if @answer.save
+      flash[:notice] = "Thanks for posting!"
+    else
+      flash[:alert] = "You must be logged in to use that function."
+    end
+    redirect_to session.delete(:return_to)
   end
 
   def new
     @question = Question.find(params[:id])
     @answer = Answer.new
   end
-  
+
   def upvote
     @answer = Answer.find(params[:id])
     @answer.votes.create(value: 1)
-    redirect_to @answer.question    
+    redirect_to @answer.question
   end
-  
+
   def downvote
     @answer = Answer.find(params[:id])
     @answer.votes.create(value: -1)
+    redirect_to @answer.question
+  end
+
+  def best
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:id])
+    @answer.update_attributes(best: true)
+    @question.update_attributes(has_best_answer: true)
     redirect_to @answer.question
   end
 
@@ -36,19 +48,19 @@ class AnswersController < ActionController::Base
   def update
     @answer = Answer.find(params[:id])
     @answer.update_attributes(answer_params)
-    redirect_to '/'
+    redirect_to @answer.question
   end
 
   def destroy
     @answer = Answer.find(params[:id])
     @answer.destroy
-    redirect_to '/'
+    redirect_to @answer.question
   end
 
   private
 
   def answer_params
-    params.require(:answer).permit(:answer)
+    params.require(:answer).permit(:answer, :user_id)
   end
 
 end

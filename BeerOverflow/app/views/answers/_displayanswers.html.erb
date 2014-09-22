@@ -1,14 +1,46 @@
-<li> <%= answer.answer %> 
-  <%= button_to '+1', upvote_question_answer_path(question, answer), method: :post %>
-  <%= button_to '-1', downvote_question_answer_path(question, answer), method: :post %>
-  <span><%= pluralize(answer.votes.sum(:value), "vote") %></span>
-  <%= link_to "Edit", edit_question_answer_path(question, answer) %>
-  <%= link_to 'Delete', question_answer_path(question, answer), method: :delete %>
-  
-  <h5> Answer Comments: </h5>
-    <ul>
-      <% answer.comments.each do |comment| %>
-        <%= render partial: 'comments/answer_comment', locals: {question: answer.question, answer: answer, comment: comment} %>
-      <% end %>
-    </ul>
-</li>
+<div class="answer_div">
+  <table class="answer_table">
+    <col width="50">
+    <col width="50">
+    <col width="100%">
+    <tr class="answer">
+      <td>
+        <%= button_to '+1', upvote_question_answer_path(question, answer), method: :post %>
+        <%= button_to '-1', downvote_question_answer_path(question, answer), method: :post %>
+      </td>
+      <td>
+        <span><%= pluralize(answer.votes.sum(:value), "sud") %></span>
+      </td>
+      <td>
+        <% if answer.best == true %>
+          THIS IS THE BEST ANSWER: <%= answer.answer %>
+        <% else %>
+          <%= answer.answer %>
+        <% end %>
+      </td>
+        <td class="update">
+          <% if session[:user_id] == question.user_id && answer.question.has_best_answer == false %>
+            <%= button_to 'Mark as best answer', best_question_answer_path(question, answer), method: :post %>
+          <% end %>
+          <% if session[:user_id] == answer.user_id %>
+            <%= link_to "edit |", edit_question_answer_path(question, answer) %>
+            <%= link_to 'delete |', question_answer_path(question, answer), method: :delete %>
+          <% end %>
+          <%= link_to 'comment', question_answer_path(question, answer), method: :delete %>
+        </td>
+      <td class="update">
+      </td>
+    </tr>
+  </table>
+
+  <%= render partial: 'comments/comment_form', locals: {question: answer.question, answer: answer, comment: @comment} %>
+
+  <table class='table comment_table'>
+    <col width="50">
+    <col width="50">
+    <col width="100%">
+    <% answer.comments.each do |comment| %>
+      <%= render partial: 'comments/answer_comment', locals: {question: answer.question, answer: answer, comment: comment} %>
+    <% end %>
+  </table>
+</div>

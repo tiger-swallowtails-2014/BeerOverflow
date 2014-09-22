@@ -1,21 +1,49 @@
-<span> <%= pluralize(@question.votes.sum(:value), "vote") %> </span>
-<h1> <%= @question.question %> </h1>
+<div class="show_container">
 
-<h3> Comments: </h3>
-<ul>
-  <% @question.comments.each do |comment| %>
-    <%= render partial: 'comments/question_comment', locals: {question: @question, comment: comment} %>
-  <% end %>
-</ul>
+  <table>
+    <col width="50">
+    <col width="50">
+    <col width="100%">
+    
+    <tr class="question_title">
+      <td class="vote_buttons">
+          <%= button_to '+1', upvote_question_path(@question), method: :post %>
+          <%= button_to '-1', downvote_question_path(@question), method: :post %>
+      </td>
+      <td>
+        <span><%= pluralize(@question.votes.sum(:value), "sud") %></span>
+      </td>
+      <td>
+        <h1> <%= @question.question %> </h1>
+      </td>
+      <% if session[:user_id] == @question.user_id %>
+        <td class="update">
+          <%= link_to 'edit', edit_question_path(@question) %>
+          <%= link_to 'delete', @question, method: :delete %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
 
-<%= link_to 'edit question', edit_question_path(@question) %>
-<%= link_to 'delete question', @question, method: :delete %>
 
-<h3> Answers </h3>
-<ul>
-  <% @question.answers.each do |answer| %>
-    <%= render partial: 'answers/displayanswers', locals: {question: @question, answer: answer} %>
-  <% end %>
-</ul>
-  
-<%= render partial: 'answers/answerform', question: @question, answer: @answer %>
+
+  <table class="table">
+    <col width="50">
+    <col width="50">
+    <col width="100%">
+    <% @question.comments.each do |comment| %>
+      <%= render partial: 'comments/question_comment', locals: {question: @question, comment: comment} %>
+    <% end %>
+  </table>
+
+
+
+  <h3> Answers </h3>
+  <div class="display_answers">
+    <% @question.answers.order(best: :desc).each do |answer| %>
+      <%= render partial: 'answers/displayanswers', locals: {question: @question, answer: answer, comment: @comment} %>
+    <% end %>
+  </div>
+
+  <%= render partial: 'answers/answerform', question: @question, answer: @answer %>
+</div>

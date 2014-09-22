@@ -21,4 +21,29 @@ background: url(http://blog.trendincite.com/wp-content/uploads/2014/02/beer-foam
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;
+
+margin: 0;
+font-family: 'Roboto', sans-serif;
+
 }
+
+header {
+  color: white;
+  padding: 0.5%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid black;
+  font-family: 'Lobster', cursive;
+}
+
+header form {
+  float: right;  
+}
+
+header a {
+  text-decoration: none;
+  font-size: 3em;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
+
