@@ -51,7 +51,17 @@ describe QuestionsController do
 	end
 
 	context "#create" do
-		
+		it "creates a new question" do
+			expect{
+				post :create, :question => attributes_for(:question)
+				}.to change { Question.count }.by(1)
+		end
+
+		it "redirects the user to the questions#index route" do
+			post :create, :question => attributes_for(:question)
+			expect(response).to redirect_to(:root)
+		end
+
 	end
 
 	context "#edit" do
