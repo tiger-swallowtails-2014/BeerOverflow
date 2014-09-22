@@ -1,6 +1,10 @@
 <div class="show_container">
 
   <table>
+    <col width="50">
+    <col width="50">
+    <col width="100%">
+    
     <tr class="question_title">
       <td class="vote_buttons">
           <%= button_to '+1', upvote_question_path(@question), method: :post %>
@@ -24,6 +28,9 @@
 
 
   <table class="table">
+    <col width="50">
+    <col width="50">
+    <col width="100%">
     <% @question.comments.each do |comment| %>
       <%= render partial: 'comments/question_comment', locals: {question: @question, comment: comment} %>
     <% end %>
