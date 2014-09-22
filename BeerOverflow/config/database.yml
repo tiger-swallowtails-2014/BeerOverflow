@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: BeerOverflow_production
-  username: BeerOverflow
-  password: <%= ENV['BEEROVERFLOW_DATABASE_PASSWORD'] %>
+  # username: BeerOverflow
+  # password: <%= ENV['BEEROVERFLOW_DATABASE_PASSWORD'] %>
