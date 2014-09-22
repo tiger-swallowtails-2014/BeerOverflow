@@ -13,7 +13,7 @@
         <span><%= pluralize(answer.votes.sum(:value), "sud") %></span>
       </td>
       <td>
-        <% if answer.best == true %>
+        <% if answer.best? %>
           Best Answer: <%= answer.answer %>
         <% else %>
           <%= answer.answer %>
