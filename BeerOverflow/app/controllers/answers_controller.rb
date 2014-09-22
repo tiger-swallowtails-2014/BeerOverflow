@@ -32,6 +32,14 @@ class AnswersController < ActionController::Base
     redirect_to @answer.question
   end
 
+  def best
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:id])
+    @answer.update_attributes(best: true)
+    @question.update_attributes(has_best_answer: true)
+    redirect_to @answer.question
+  end
+
   def edit
     @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])

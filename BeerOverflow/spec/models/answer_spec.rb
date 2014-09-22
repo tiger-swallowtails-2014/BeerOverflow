@@ -1,4 +1,5 @@
 require 'rails_helper'
+p ENV["RAILS_ENV"]
 
 describe Answer do
   before(:each) do
