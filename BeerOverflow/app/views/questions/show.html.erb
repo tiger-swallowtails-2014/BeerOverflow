@@ -2,7 +2,7 @@
 
   <table>
     <col width="50">
-    <col width="50">
+    <col width="100">
     <col width="100%">
     
     <tr class="question_title">
@@ -15,6 +15,7 @@
       </td>
       <td>
         <h1> <%= @question.question %> </h1>
+        <span class="username"> by <%= " #{@question.user.username}" %> </span>
       </td>
       <% if session[:user_id] == @question.user_id %>
         <td class="update">
@@ -24,10 +25,12 @@
       <% end %>
     </tr>
   </table>
+  
+  <%= render partial: 'comments/question_comment_form', locals: {question: @question, comment: @comment} %>
 
 
 
-  <table class="table">
+  <table class="table comment_table">
     <col width="50">
     <col width="50">
     <col width="100%">

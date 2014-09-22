@@ -21,16 +21,27 @@ class CommentsController < ApplicationController
   end
   
   def create
+    p params
+    
     session[:return_to] ||= request.referer
-    @answer = Answer.find(params[:answer_id])
-    @comment = @answer.comments.new(comment_params)
-    if @comment.save
-      flash[:notice] = "Thanks for posting!"
-    else
-      flash[:alert] = "You must be logged in to use that function."
+    
+    if params[:answer_id]
+      @answer = Answer.find(params[:answer_id])
+      @comment = @answer.comments.create(comment_params)
+      render :partial => 'answer_comment', locals: {question: @answer.question, answer: @answer, comment: @comment}
+    elsif
+      params[:question_id]
+      @question = Question.find(params[:question_id])
+      @comment = @question.comments.create(comment_params)
+      render :partial => 'question_comment', locals: {question: @question, comment: @comment}
     end
-    # redirect_to session.delete(:return_to)
-    render :partial => 'answer_comment', locals: {question: @answer.question, answer: @answer, comment: @comment}
+    
+    # if @comment.save
+    #   flash[:notice] = "Thanks for posting!"
+    # else
+    #   flash[:alert] = "You must be logged in to use that function."
+    # end
+    
   end
   
   private
