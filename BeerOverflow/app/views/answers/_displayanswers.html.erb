@@ -1,4 +1,8 @@
-<div class="answer_div">
+<% if answer.best == true %>
+  <div class="right_answer_div">
+<% else %>
+  <div class="answer_div">
+<% end %>
   <table class="answer_table">
     <col width="50">
     <col width="50">
