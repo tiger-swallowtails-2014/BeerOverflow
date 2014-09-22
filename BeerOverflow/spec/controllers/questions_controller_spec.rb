@@ -36,6 +36,11 @@ describe QuestionsController do
 			get :show, :id => question.id
 			expect(response).to render_template("show")
 		end
+
+		it "assigns question to @question" do
+			get :show, :id => question.id
+			expect(assigns(:question)).to eq question
+		end
 	end
 
 	context "#new" do
@@ -47,6 +52,11 @@ describe QuestionsController do
 		it "renders the new template" do
 			get :new
 			expect(response).to render_template("new")
+		end
+
+		it "assigns Question.new to @question" do
+			get :new
+			expect(assigns(:question)).to be_a_new Question
 		end
 	end
 
@@ -80,7 +90,7 @@ describe QuestionsController do
 	end
 
 	context "#destroy" do
-		it "deletes a todo" do
+		it "deletes a question" do
 			delete :destroy, :id => question.id
 			expect(Question.count).to eq(0)
 		end
