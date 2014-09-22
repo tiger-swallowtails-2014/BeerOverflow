@@ -23,7 +23,8 @@ class CommentsController < ApplicationController
     else
       flash[:alert] = "You must be logged in to use that function."
     end
-    redirect_to session.delete(:return_to)
+    # redirect_to session.delete(:return_to)
+    render :partial => 'answer_comment', locals: {question: @answer.question, answer: @answer, comment: @comment}
   end
   
   private
