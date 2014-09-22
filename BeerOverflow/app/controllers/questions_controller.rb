@@ -17,14 +17,13 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    session[:return_to] ||= request.referer
     @question = Question.new(question_params)
     if @question.save
       flash[:notice] = "Thanks for posting!"
     else
       flash[:alert] = "You must be logged in to use that function."
     end
-    redirect_to session.delete(:return_to)
+    redirect_to root_path
   end
 
   def edit
