@@ -21,15 +21,23 @@ class AnswersController < ActionController::Base
   end
 
   def upvote
-    @answer = Answer.find(params[:id])
-    @answer.votes.create(value: 1)
-    redirect_to @answer.question
+    @answer = Answer.find(params[:id])  
+    @vote = @answer.votes.new(value: 1, user_id: session[:user_id])
+    if @vote.save
+      render :partial => 'votes/success'
+    else
+      render :partial => 'votes/failure'
+    end    
   end
 
   def downvote
     @answer = Answer.find(params[:id])
-    @answer.votes.create(value: -1)
-    redirect_to @answer.question
+    @vote = @answer.votes.new(value: -1, user_id: session[:user_id])
+    if @vote.save
+      render :partial => 'votes/success'
+    else
+      render :partial => 'votes/failure'
+    end   
   end
 
   def best

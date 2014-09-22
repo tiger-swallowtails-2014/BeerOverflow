@@ -45,14 +45,22 @@ class QuestionsController < ApplicationController
 
   def upvote
     @question = Question.find(params[:id])
-    @question.votes.create(value: 1)
-    redirect_to @question
+    @vote = @question.votes.new(value: 1, user_id: session[:user_id])
+    if @vote.save
+      render :partial => 'votes/success'
+    else
+      render :partial => 'votes/failure'
+    end      
   end
 
   def downvote
     @question = Question.find(params[:id])
-    @question.votes.create(value: -1)
-    redirect_to @question
+    @vote = @question.votes.new(value: -1, user_id: session[:user_id])
+    if @vote.save
+      render :partial => 'votes/success'
+    else
+      render :partial => 'votes/failure'
+    end 
   end
 
   private

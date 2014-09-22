@@ -7,11 +7,11 @@
     
     <tr class="question_title">
       <td class="vote_buttons">
-          <%= button_to '+1', upvote_question_path(@question), method: :post %>
-          <%= button_to '-1', downvote_question_path(@question), method: :post %>
+          <%= button_to '+1', upvote_question_path(@question), method: :post, class: 'positive', :remote => true %>
+          <%= button_to '-1', downvote_question_path(@question), method: :post, class: 'negative', :remote => true %>
       </td>
       <td>
-        <span><%= pluralize(@question.votes.sum(:value), "sud") %></span>
+        <span class="sud_count"><%= pluralize(@question.votes.sum(:value), "sud") %></span>
       </td>
       <td>
         <h1> <%= @question.question %> </h1>

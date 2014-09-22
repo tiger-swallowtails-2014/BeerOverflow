@@ -6,11 +6,11 @@
     <col width="100%">
     <tr class="answer">
       <td>
-        <%= button_to '+1', upvote_question_answer_path(question, answer), method: :post %>
-        <%= button_to '-1', downvote_question_answer_path(question, answer), method: :post %>
+        <%= button_to '+1', upvote_question_answer_path(question, answer), method: :post, class: 'positive', :remote => true %>
+        <%= button_to '-1', downvote_question_answer_path(question, answer), method: :post, class: 'negative', :remote => true %>
       </td>
       <td>
-        <span><%= pluralize(answer.votes.sum(:value), "sud") %></span>
+        <span class="sud_count"><%= pluralize(answer.votes.sum(:value), "sud") %></span>
       </td>
       <td>
         <% if answer.best? %>

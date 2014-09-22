@@ -1,10 +1,11 @@
 <tr class="comment"> 
   <td>
-    <%= button_to '+1', upvote_question_answer_comment_path(question, answer, comment), method: :post %>
-    <%= button_to '-1', downvote_question_answer_comment_path(question, answer, comment), method: :post %>
+    
+    <%= button_to '+1', upvote_question_answer_comment_path(question, answer, comment), method: :post, class: 'positive', :remote => true %>
+    <%= button_to '-1', downvote_question_answer_comment_path(question, answer, comment), method: :post, class: 'negative', :remote => true %>
   </td>
   <td>
-    <span> <%= pluralize(comment.votes.sum(:value), "sud") %> </span>
+    <span class="sud_count"> <%= pluralize(comment.votes.sum(:value), "sud") %> </span>
   </td>
   <td>
     <span> <%= comment.comment %> </span>
