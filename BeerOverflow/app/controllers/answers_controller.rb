@@ -40,7 +40,7 @@ class AnswersController < ActionController::Base
   def update
     @answer = Answer.find(params[:id])
     @answer.update_attributes(answer_params)
-    redirect_to '/'
+    redirect_to @answer.question
   end
 
   def destroy

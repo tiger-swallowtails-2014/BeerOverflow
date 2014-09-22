@@ -34,26 +34,26 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     @question.update_attributes(question_params)
-    redirect_to '/'
+    redirect_to @question
   end
 
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
-    redirect_to '/'
+    redirect_to root_path
   end
 
 
   def upvote
     @question = Question.find(params[:id])
     @question.votes.create(value: 1)
-    redirect_to '/'
+    redirect_to @question
   end
 
   def downvote
     @question = Question.find(params[:id])
     @question.votes.create(value: -1)
-    redirect_to '/'
+    redirect_to @question
   end
 
   private
