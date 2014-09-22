@@ -6,13 +6,15 @@ class AnswersController < ActionController::Base
 
   def create
     session[:return_to] ||= request.referer
-    @answer = Question.find(params[:question_id]).answers.new(answer_params)
+    @question = Question.find(params[:question_id])
+    @answer = @question.answers.new(answer_params)
+    @comment = Comment.new
     if @answer.save
       flash[:notice] = "Thanks for posting!"
     else
       flash[:alert] = "You must be logged in to use that function."
     end
-    redirect_to session.delete(:return_to)
+    render partial: 'answers/displayanswers', locals: {question: @question, answer: @answer, comment: @comment}
   end
 
   def new

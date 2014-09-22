@@ -1,4 +1,4 @@
-<%= form_for([@question, @answer]) do |f| %>
+<%= form_for [@question, @answer], :remote => true do |f| %>
   <%= f.text_area :answer, placeholder: "Got an answer?  Submit it or chug a beer!" %>
   <%= f.hidden_field :user_id, :value => session[:user_id] %>
   <%= f.submit "Submit" %>
