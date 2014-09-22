@@ -11,13 +11,15 @@
       <td>
         <%= answer.answer %> 
       </td>
-      <% if session[:user_id] == answer.user_id %>
         <td class="update">
+          <% if session[:user_id] == answer.user_id %>
           <%= link_to "edit |", edit_question_answer_path(question, answer) %>
           <%= link_to 'delete |', question_answer_path(question, answer), method: :delete %>
+          <% end %>
           <%= link_to 'comment', question_answer_path(question, answer), method: :delete %>
         </td>
-      <% end %>
+      <td class="update">
+      </td>
     </tr>
   </table>
   
