@@ -12,8 +12,8 @@ describe Answer do
 
   it "is added to the database when created" do
     count = Answer.all.count
-    question = Question.create(question: "test question")
-    Answer.create(answer: "test answer", question_id: question.id)
+    question = Question.create(question: "test question", user_id: 1)
+    Answer.create(answer: "test answer", question_id: question.id, user_id: 1)
     expect(Answer.all.count).not_to eq(count)
   end
 end
