@@ -65,6 +65,10 @@ describe QuestionsController do
 	end
 
 	context "#edit" do
+		it "renders edit view successfully" do
+			get :edit, :id => question.id
+			expect(response).to be_success
+		end
 	end
 
 	context "#update" do
