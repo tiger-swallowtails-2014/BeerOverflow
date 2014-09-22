@@ -15,9 +15,15 @@ class CommentsController < ApplicationController
   end
   
   def create
+    session[:return_to] ||= request.referer
     @answer = Answer.find(params[:answer_id])
-    @answer.comments.create(comment_params)
-    redirect_to @answer.question
+    @comment = @answer.comments.new(comment_params)
+    if @comment.save
+      flash[:notice] = "Thanks for posting!"
+    else
+      flash[:alert] = "You must be logged in to use that function."
+    end
+    redirect_to session.delete(:return_to)
   end
   
   private
