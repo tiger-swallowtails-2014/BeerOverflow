@@ -3,12 +3,17 @@ ready = function() {
     var Question = {
       bindEvents: function() {
         var self = this;
-        $('body').on('ajax:success', '.new_comment', this.showCommentForm)
+        $('body').on('ajax:success', '.new_comment', this.appendAnswerComment)
+        $('body').on('ajax:success', '.question_comment', this.appendQuestionComment)
         $('body').on('ajax:success', '.button_to', this.vote)
       },
       
-      showCommentForm: function(e, data) {
+      appendAnswerComment: function(e, data) {
         $(this).siblings('.comment_table').append(data)
+      },
+      
+      appendQuestionComment: function(e, data) {
+        console.log("sup shit")
       },
       
       vote: function(e, data) { 
