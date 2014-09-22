@@ -4,7 +4,7 @@
     <%= button_to '-1', downvote_question_comment_path(question, comment), method: :post %>
   </td>
   <td>
-    <span> <%= pluralize(comment.votes.sum(:value), "vote") %> </span>
+    <span> <%= pluralize(comment.votes.sum(:value), "sud") %> </span>
   </td>
   <td>
     <span> <%= comment.comment %> </span>
