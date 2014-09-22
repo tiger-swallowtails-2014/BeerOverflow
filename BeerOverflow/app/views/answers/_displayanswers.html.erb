@@ -11,19 +11,21 @@
       <td>
         <%= answer.answer %> 
       </td>
-      <td class="update">
-        <%= link_to "edit |", edit_question_answer_path(question, answer) %>
-        <%= link_to 'delete |', question_answer_path(question, answer), method: :delete %>
-        <%= link_to 'comment', question_answer_path(question, answer), method: :delete %>
-      </td>
+      <% if session[:user_id] == answer.user_id %>
+        <td class="update">
+          <%= link_to "edit |", edit_question_answer_path(question, answer) %>
+          <%= link_to 'delete |', question_answer_path(question, answer), method: :delete %>
+          <%= link_to 'comment', question_answer_path(question, answer), method: :delete %>
+        </td>
+      <% end %>
     </tr>
   </table>
   
   <%= render partial: 'comments/comment_form', locals: {question: answer.question, answer: answer, comment: @comment} %>
 
-    <table class='table comment_table'>
-      <% answer.comments.each do |comment| %>
-        <%= render partial: 'comments/answer_comment', locals: {question: answer.question, answer: answer, comment: comment} %>
-      <% end %>
-    </table>
+  <table class='table comment_table'>
+    <% answer.comments.each do |comment| %>
+      <%= render partial: 'comments/answer_comment', locals: {question: answer.question, answer: answer, comment: comment} %>
+    <% end %>
+  </table>
 </div>
