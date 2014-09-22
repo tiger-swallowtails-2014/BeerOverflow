@@ -1,17 +1,23 @@
 class CommentsController < ApplicationController
   
   def upvote
-    @comment = Comment.find(params[:id])
-    @comment.votes.create(value: 1)
-    @question = Question.find(params[:question_id])
-    redirect_to @question  
+    @comment = Comment.find(params[:id]) 
+    @vote = @comment.votes.new(value: 1, user_id: session[:user_id])
+    if @vote.save
+      render :partial => 'votes/success'
+    else
+      render :partial => 'votes/failure'
+    end   
   end
   
   def downvote
     @comment = Comment.find(params[:id])
-    @comment.votes.create(value: -1)
-    @question = Question.find(params[:question_id])
-    redirect_to @question
+    @vote = @comment.votes.new(value: -1, user_id: session[:user_id])
+    if @vote.save
+      render :partial => 'votes/success'
+    else
+      render :partial => 'votes/failure'
+    end   
   end
   
   def create
