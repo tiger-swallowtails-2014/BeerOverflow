@@ -80,6 +80,10 @@ describe QuestionsController do
 	end
 
 	context "#destroy" do
+		it "deletes a todo" do
+			delete :destroy, :id => question.id
+			expect(Question.count).to eq(0)
+		end
 	end
 
 end
