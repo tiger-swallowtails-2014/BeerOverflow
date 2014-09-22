@@ -72,6 +72,11 @@ describe QuestionsController do
 	end
 
 	context "#update" do
+		it "edits a question" do
+			put :update, {:id => question.id, :question => {question: "new question"}}
+			question.reload
+			expect(question.question).to eq("new question")
+		end
 	end
 
 	context "#destroy" do
