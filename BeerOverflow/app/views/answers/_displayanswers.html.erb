@@ -1,4 +1,4 @@
-<div class="answer_div"> 
+<div class="answer_div">
   <table class="answer_table">
     <tr class="answer">
       <td>
@@ -9,12 +9,19 @@
         <span><%= pluralize(answer.votes.sum(:value), "sud") %></span>
       </td>
       <td>
-        <%= answer.answer %> 
+        <% if answer.best == true %>
+          THIS IS THE BEST ANSWER: <%= answer.answer %>
+        <% else %>
+          <%= answer.answer %>
+        <% end %>
       </td>
         <td class="update">
+          <% if session[:user_id] == question.user_id && answer.question.has_best_answer == false %>
+            <%= button_to 'Mark as best answer', best_question_answer_path(question, answer), method: :post %>
+          <% end %>
           <% if session[:user_id] == answer.user_id %>
-          <%= link_to "edit |", edit_question_answer_path(question, answer) %>
-          <%= link_to 'delete |', question_answer_path(question, answer), method: :delete %>
+            <%= link_to "edit |", edit_question_answer_path(question, answer) %>
+            <%= link_to 'delete |', question_answer_path(question, answer), method: :delete %>
           <% end %>
           <%= link_to 'comment', question_answer_path(question, answer), method: :delete %>
         </td>
@@ -22,7 +29,7 @@
       </td>
     </tr>
   </table>
-  
+
   <%= render partial: 'comments/comment_form', locals: {question: answer.question, answer: answer, comment: @comment} %>
 
   <table class='table comment_table'>

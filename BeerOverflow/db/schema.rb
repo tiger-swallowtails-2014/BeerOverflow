@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140920212512) do
 
   create_table "answers", force: true do |t|
     t.text     "answer"
+    t.boolean  "best",        default: false
     t.integer  "question_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140920212512) do
 
   create_table "questions", force: true do |t|
     t.text     "question"
+    t.boolean  "has_best_answer", default: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

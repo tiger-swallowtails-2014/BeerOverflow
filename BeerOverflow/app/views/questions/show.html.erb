@@ -33,10 +33,10 @@
 
   <h3> Answers </h3>
   <div class="display_answers">
-    <% @question.answers.each do |answer| %>
+    <% @question.answers.order(best: :desc).each do |answer| %>
       <%= render partial: 'answers/displayanswers', locals: {question: @question, answer: answer, comment: @comment} %>
     <% end %>
   </div>
-    
+
   <%= render partial: 'answers/answerform', question: @question, answer: @answer %>
 </div>
