@@ -15,7 +15,6 @@ class CommentsController < ApplicationController
   end
   
   def create
-    p params
     @answer = Answer.find(params[:answer_id])
     @answer.comments.create(comment_params)
     redirect_to @answer.question
@@ -23,6 +22,6 @@ class CommentsController < ApplicationController
   
   private
   def comment_params
-    params.require(:comment).permit(:comment)
+    params.require(:comment).permit(:comment, :user_id)
   end
 end
