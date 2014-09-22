@@ -11,7 +11,7 @@
         <%= button_to '-1', downvote_question_path(question), method: :post %>
       </td>
       <td>
-        <span><%= pluralize(question.votes.sum(:value), "sud") %></span>
+        <span class="sud_count"><%= pluralize(question.votes.sum(:value), "sud") %></span>
       </td>
       <td> <%= link_to question.question, question %>
       </td>
