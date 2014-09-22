@@ -5,7 +5,8 @@ describe QuestionsController do
 		Question.delete_all
 	end
 
-	let!(:question) { FactoryGirl.create :question }
+	let!(:question) { FactoryGirl.create :question}
+	let(:user) {question.user}
 
 	context "#index" do
 		it "loads page successfully" do
