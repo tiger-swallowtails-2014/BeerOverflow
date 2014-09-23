@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "Welcome to the site!"
       session[:user_id] = @user.id
+      # root_path ? 
       redirect_to "/"
     else
       flash[:alert] = "There was a problem creating your account. Please try again."

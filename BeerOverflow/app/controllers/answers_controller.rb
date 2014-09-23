@@ -1,10 +1,13 @@
 class AnswersController < ActionController::Base
 
   def index
-    @question = Question.find(params[:id])
+    # this generally means, find all the things...here you're finding only one
+    # thing?  Probably not actually using this....
+    @question = Question.find(params[:id]) # seems like #show
   end
 
   def create
+    # Seems wonky...
     session[:return_to] ||= request.referer
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new(answer_params)
@@ -23,7 +26,16 @@ class AnswersController < ActionController::Base
   end
 
   def upvote
-    @answer = Answer.find(params[:id])  
+    @answer = Answer.find(params[:id])
+    # @answer.upvote! should probably be implemented and
+    # *IT* can do this creation and addition of a new vote
+    # to itself.
+    #
+    # class Answer
+    #
+    # def upvote_for_user!(user)
+    #   votes.create(value: 1, user_id: user.id)
+    # end
     @vote = @answer.votes.new(value: 1, user_id: session[:user_id])
     if @vote.save
       render :partial => 'votes/success'
@@ -42,6 +54,8 @@ class AnswersController < ActionController::Base
     end   
   end
 
+  # Really this is #update, make update handle when best: is / is not set and
+  # then you can get rid of this method.
   def best
     @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])

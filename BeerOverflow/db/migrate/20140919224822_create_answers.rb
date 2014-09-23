@@ -9,3 +9,14 @@ class CreateAnswers < ActiveRecord::Migration
     end
   end
 end
+
+
+# Discussion:
+#
+# Answer.find(1).best_answer
+#
+# def best_answer
+#   answers.find{ |a| a.best }
+# end
+#
+# alias :has_best_answer? :best_answer

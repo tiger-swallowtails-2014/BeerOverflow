@@ -57,6 +57,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @vote = @question.votes.new(value: -1, user_id: session[:user_id])
     if @vote.save
+      # if you want really generic response try render text: 'yay!'
       render :partial => 'votes/success'
     else
       render :partial => 'votes/failure'

@@ -1,4 +1,4 @@
-
+# whitespace for artistic effect?
 
 class User < ActiveRecord::Base
   attr_accessor :password

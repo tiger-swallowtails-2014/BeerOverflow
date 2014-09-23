@@ -20,11 +20,17 @@ describe QuestionsController do
 			expect(response).to render_template("index")
 		end
 
+    # Tell me more about this from a conceptual perspective like: "we can create
+    # a question."  Tell me what you are doing, not what the implementation is.
+
 		it "assigns @questions the correct shit" do
 			get :index
 			expect(assigns(:questions)).to include Question.last
+
+      # why not?
+			# expect(assigns(:questions)).to include question
 		end
-		
+		# <-- don't leave trailing whitespace
 	end
 
 	context "#show" do

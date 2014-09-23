@@ -40,6 +40,8 @@ Rails.application.routes.draw do
       end
   end
 
+  # delete these....
+  #
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

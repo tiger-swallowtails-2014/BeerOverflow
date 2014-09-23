@@ -1,4 +1,5 @@
 <tr class="comment">
+  <!-- partial? I think you can use commentable_path ... play with it... -->
   <td> 
     <%= button_to '+1', upvote_question_comment_path(question, comment), method: :post, class: 'positive', :remote => true %>
     <%= button_to '-1', downvote_question_comment_path(question, comment), method: :post, class: 'negative', :remote => true %>
