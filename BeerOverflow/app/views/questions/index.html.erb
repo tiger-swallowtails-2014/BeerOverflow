@@ -1,5 +1,14 @@
-<div class="ask_question">
-  <%= link_to 'Ask Question', new_question_path %>
+<div class="show_container">
+  <div class="preview">
+    question preview  
+  </div>
+  <div>
+    <%= form_for @question do |f| %>
+      <%= f.text_area :question, class: :input, placeholder: "Have a question?  Ask it here or chug a beer!" %>
+      <%= f.hidden_field :user_id, :value => session[:user_id] %>
+      <%= f.submit "Ask Question" %>
+    <% end %>
+  </div>
 </div>
 
 <table class="question_container">
@@ -13,7 +22,7 @@
         <span class="sud_count"><%= pluralize(question.votes.sum(:value), "sud") %></span>
       </td>
       <td> 
-        <h3> <%= link_to question.question, question %> </h3>
+        <h3> <%= link_to question.question, question, class: :question_title %> </h3>
         <span class="username"> by <%= " #{question.user.username}" %> </span>
       </td>
     </tr>

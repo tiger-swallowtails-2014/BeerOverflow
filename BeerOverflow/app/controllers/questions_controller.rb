@@ -2,6 +2,8 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.order(created_at: :desc)
+    @question_yes = Question.last
+    @question = Question.new
   end
 
   def show
