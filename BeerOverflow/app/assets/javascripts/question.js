@@ -6,6 +6,7 @@ ready = function() {
       $('body').on('ajax:success', '.new_comment', this.appendAnswerComment)
       $('body').on('ajax:success', '.button_to', this.vote)
       $('body').on('ajax:success', '.new_answer', this.appendAnswer)
+      $('body').on('ajax:success', '.new_question', this.appendQuestion)
     },
     
     appendAnswerComment: function(e, data) {
@@ -13,7 +14,12 @@ ready = function() {
     },
     
     appendAnswer: function(e, data) {
-      $(this).siblings('.display_answers').append(data)
+      $('.display_answers:last').after(data)
+    },
+    
+    appendQuestion: function(e, data) {
+      $('.question:first').before(data)
+      convertText('.question:first a')
     },
     
     vote: function(e, data) { 
@@ -35,7 +41,7 @@ ready = function() {
   }
 
   Question.bindEvents();
-  markdownController(".input", ".preview");
+  markdownController(".input", ".preview h3");
   convertText('.question_title')
 }
 

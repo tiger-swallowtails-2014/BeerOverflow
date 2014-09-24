@@ -113,6 +113,11 @@ input[type="submit"] {
 .username_comment {
   font-size: 8px;
 }
+
 h3 {
   margin: 0;
+}
+
+.show_question_title td {
+  padding:1%;
 }

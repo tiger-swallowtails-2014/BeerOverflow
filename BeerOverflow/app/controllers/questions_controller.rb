@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
     else
       flash[:alert] = "You must be logged in to use that function."
     end
-    redirect_to root_path
+    render partial: 'question', locals: {question: @question}
   end
 
   def edit
