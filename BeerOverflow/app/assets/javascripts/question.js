@@ -14,7 +14,7 @@ ready = function() {
     },
     
     appendAnswer: function(e, data) {
-      $('.display_answers:last').after(data)
+      $('.display_answers').append(data)
     },
     
     appendQuestion: function(e, data) {
